@@ -2,6 +2,8 @@
   --bg-outer-color: #302e27;
   --bg-inner-color: #f2f1d1;
 
+  --bg-accent-color: #2d2d2d;
+
   --button-color: #df5828;
   --button-border-color: #bf572c;
   --button-font-color: #ffcbaf;
@@ -80,6 +82,23 @@ button {
 .content__data {
   flex: 1 1 50%;
   overflow-y: auto;
+  /* Firefox */
+  scrollbar-width: 6px;
+  scrollbar-color: var(--bg-accent-color);
+  scrollbar-face-color: var(--button-color);
+}
+
+.content__media::-webkit-scrollbar,
+.content__data::-webkit-scrollbar {
+  /* Safari and Chrome */
+  background-color: var(--bg-accent-color);
+  width: 6px;
+}
+
+.content__media::-webkit-scrollbar-thumb,
+.content__data::-webkit-scrollbar-thumb {
+  /* Safari and Chrome */
+  background-color: var(--button-color);
 }
 
 .content__media {
