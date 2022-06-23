@@ -11,7 +11,7 @@
   --font-color: #626459;
   --font-accent-color: #302e27;
 
-  --font-size-larger: 1.3em;
+  --font-size-larger: 1.8em;
   --font-size-medium: 1.1em;
   --font-size-regular: 0.9em;
   --font-size-small: 0.7em;
@@ -47,9 +47,16 @@ button {
 
 .header {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 10%;
+  height: 14%;
+}
+
+.header__title {
+  font-size: var(--font-size-larger);
+  color: var(--font-color);
+  margin: 0.5em;
 }
 
 .header__button {
