@@ -17,7 +17,7 @@ export class YoutubeComponent extends BaseComponent<HTMLElement> {
     )! as HTMLIFrameElement;
     youtubeVideo.src = this.convertToEmbededURL(url);
   }
-
+  //  예외 처리 필요
   private convertToEmbededURL(url: string): string {
     const regEx = /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-]{11}))|(?:youtu.be\/([a-zA-Z0-9-]{11})))/gm;
     const matched = url.match(regEx);
