@@ -1,14 +1,19 @@
 import { Component } from './components/component.js';
+import { InputDialog } from './components/dialog/dialog.js';
 import { BookComponent } from './components/page/items/book.js';
 import { ImageComponent } from './components/page/items/image.js';
 import { NewsComponent } from './components/page/items/news.js';
 import { YoutubeComponent } from './components/page/items/youtube.js';
-import { Composable, PageComponent } from './components/page/page.js';
+import {
+  Composable,
+  PageComponent,
+  PageItemComponent,
+} from './components/page/page.js';
 
 class App {
   private readonly page: Component & Composable;
   constructor(appRoot: HTMLElement) {
-    this.page = new PageComponent();
+    this.page = new PageComponent(PageItemComponent);
     this.page.attachTo(appRoot);
 
     const image = new ImageComponent('title', 'https://picsum.photos/400/200');
@@ -32,8 +37,20 @@ class App {
       '이것저것',
       'https://www.youtube.com/embed/-WNimB7KMjA'
     );
-
     this.page.addChild(youtube);
+
+    const imageBtn = document.querySelector('#image')! as HTMLButtonElement;
+    imageBtn.addEventListener('click', () => {
+      const dialog = new InputDialog();
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(document.body);
+      });
+      dialog.setOnSubmitListener(() => {
+        dialog.removeFrom(document.body);
+      });
+
+      dialog.attachTo(document.body);
+    });
   }
 }
 
