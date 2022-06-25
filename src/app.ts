@@ -13,10 +13,17 @@ import {
 } from './components/page/page.js';
 
 class App {
-  private readonly page: Component & Composable;
-  constructor(appRoot: HTMLElement, dialogRoot: HTMLElement) {
-    this.page = new PageComponent(PageItemComponent);
-    this.page.attachTo(appRoot);
+  private readonly pageForMedia: Component & Composable;
+  private readonly pageForText: Component & Composable;
+  constructor(dialogRoot: HTMLElement) {
+    this.pageForMedia = new PageComponent(PageItemComponent);
+    this.pageForText = new PageComponent(PageItemComponent);
+    this.pageForMedia.attachTo(
+      document.querySelector('.content__media')! as HTMLElement
+    );
+    this.pageForText.attachTo(
+      document.querySelector('.content__text')! as HTMLElement
+    );
 
     const imageBtn = document.querySelector('#image')! as HTMLButtonElement;
     imageBtn.addEventListener('click', () => {
@@ -31,7 +38,7 @@ class App {
 
       dialog.setOnSubmitListener(() => {
         const image = new ImageComponent(mediaInput.title, mediaInput.url);
-        this.page.addChild(image);
+        this.pageForMedia.addChild(image);
         dialog.removeFrom(dialogRoot);
       });
     });
@@ -49,7 +56,7 @@ class App {
 
       dialog.setOnSubmitListener(() => {
         const youtube = new YoutubeComponent(mediaInput.title, mediaInput.url);
-        this.page.addChild(youtube);
+        this.pageForMedia.addChild(youtube);
         dialog.removeFrom(dialogRoot);
       });
     });
@@ -71,7 +78,7 @@ class App {
           textInput.url,
           textInput.summary
         );
-        this.page.addChild(news);
+        this.pageForText.addChild(news);
         dialog.removeFrom(dialogRoot);
       });
     });
@@ -93,14 +100,11 @@ class App {
           textInput.url,
           textInput.summary
         );
-        this.page.addChild(book);
+        this.pageForText.addChild(book);
         dialog.removeFrom(dialogRoot);
       });
     });
   }
 }
 
-new App(
-  document.querySelector('.content__media')! as HTMLElement,
-  document.body
-);
+new App(document.body);
