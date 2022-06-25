@@ -3,6 +3,17 @@ import { Composable } from '../page/page.js';
 
 type OnListener = () => void;
 
+export interface MediaData {
+  readonly title: string;
+  readonly url: string;
+}
+
+export interface TextData {
+  readonly title: string;
+  readonly summary: string;
+  readonly url: string;
+}
+
 export class InputDialog extends BaseComponent<HTMLElement>
   implements Composable {
   closeListener?: OnListener;
