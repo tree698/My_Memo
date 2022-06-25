@@ -5,18 +5,24 @@ export class ImageComponent extends BaseComponent<HTMLElement> {
     super(`<section class="image">
             <p class="image__title"></p>
             <div class="image__holder"><img class="image__thumbnail"></div>
+            <a class="image__link" target="_blank">Go to Source</a>
           </section>
     `);
 
-    const imageElement = this.element.querySelector(
-      '.image__thumbnail'
-    )! as HTMLImageElement;
-    imageElement.alt = title;
-    imageElement.src = url;
-
-    const titleElement = this.element.querySelector(
+    const imageTitle = this.element.querySelector(
       '.image__title'
     )! as HTMLParagraphElement;
-    titleElement.textContent = title;
+    imageTitle.textContent = title;
+
+    const imageSrc = this.element.querySelector(
+      '.image__thumbnail'
+    )! as HTMLImageElement;
+    imageSrc.alt = title;
+    imageSrc.src = url;
+
+    const imageLink = this.element.querySelector(
+      '.image__link'
+    )! as HTMLAnchorElement;
+    imageLink.href = url;
   }
 }

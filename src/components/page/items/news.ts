@@ -4,8 +4,8 @@ export class NewsComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string, summary: string) {
     super(`<section class="news">
                 <p class="news__title"></p>
-                <textarea class="news__textarea" name="" id="" cols="20" rows="3" placeholder="Summary.."></textarea>
-                <a class="news__link" target="_blank">Go to Website</a>
+                <textarea class="news__summary" rows="3"></textarea>
+                <a class="news__link" target="_blank">Go to Source</a>
             </section>`);
 
     const newsTitle = this.element.querySelector(
@@ -13,14 +13,14 @@ export class NewsComponent extends BaseComponent<HTMLElement> {
     )! as HTMLParagraphElement;
     newsTitle.textContent = title;
 
-    const link = this.element.querySelector(
+    const newsSummary = this.element.querySelector(
+      '.news__summary'
+    )! as HTMLTextAreaElement;
+    newsSummary.textContent = summary;
+
+    const newsLink = this.element.querySelector(
       '.news__link'
     )! as HTMLAnchorElement;
-    link.href = url;
-
-    const textarea = this.element.querySelector(
-      '.news__textarea'
-    )! as HTMLTextAreaElement;
-    textarea.textContent = summary;
+    newsLink.href = url;
   }
 }

@@ -1,5 +1,7 @@
 import { Component } from './components/component.js';
 import { InputDialog } from './components/dialog/dialog.js';
+import { MediaInputComponent } from './components/dialog/input/media_input.js';
+import { TextInputComponent } from './components/dialog/input/text_input.js';
 import { BookComponent } from './components/page/items/book.js';
 import { ImageComponent } from './components/page/items/image.js';
 import { NewsComponent } from './components/page/items/news.js';
@@ -12,46 +14,93 @@ import {
 
 class App {
   private readonly page: Component & Composable;
-  constructor(appRoot: HTMLElement) {
+  constructor(appRoot: HTMLElement, dialogRoot: HTMLElement) {
     this.page = new PageComponent(PageItemComponent);
     this.page.attachTo(appRoot);
-
-    const image = new ImageComponent('title', 'https://picsum.photos/400/200');
-    this.page.addChild(image);
-
-    const news = new NewsComponent(
-      'test',
-      'https://google.com',
-      'This is my netflix'
-    );
-    this.page.addChild(news);
-
-    const book = new BookComponent(
-      '호킹',
-      'https://www.coupang.com/vp/products/5423927363?itemId=8198548538&vendorItemId=75486646729&src=1042503&spec=10304982&addtag=400&ctag=5423927363&lptag=10304982I8198548538&itime=20220623161435&pageType=PRODUCT&pageValue=5423927363&wPcid=25478224066663013423345&wRef=&wTime=20220623161435&redirect=landing&gclid=Cj0KCQjwntCVBhDdARIsAMEwACk84aOE_HEDKWu1Ht8Bk_JHxph9nN3jrSPa95jU6J1-gyoAxMBHNZoaAsLaEALw_wcB&campaignid=12207438463&adgroupid=115720946583&isAddedCart=',
-      '감동 그 자체'
-    );
-    this.page.addChild(book);
-
-    const youtube = new YoutubeComponent(
-      '이것저것',
-      'https://www.youtube.com/embed/-WNimB7KMjA'
-    );
-    this.page.addChild(youtube);
 
     const imageBtn = document.querySelector('#image')! as HTMLButtonElement;
     imageBtn.addEventListener('click', () => {
       const dialog = new InputDialog();
+      const mediaInput = new MediaInputComponent();
+      dialog.addChild(mediaInput);
+      dialog.attachTo(dialogRoot);
+
       dialog.setOnCloseListener(() => {
-        dialog.removeFrom(document.body);
-      });
-      dialog.setOnSubmitListener(() => {
-        dialog.removeFrom(document.body);
+        dialog.removeFrom(dialogRoot);
       });
 
-      dialog.attachTo(document.body);
+      dialog.setOnSubmitListener(() => {
+        const image = new ImageComponent(mediaInput.title, mediaInput.url);
+        this.page.addChild(image);
+        dialog.removeFrom(dialogRoot);
+      });
+    });
+
+    const youtubeBtn = document.querySelector('#youtube')! as HTMLButtonElement;
+    youtubeBtn.addEventListener('click', () => {
+      const dialog = new InputDialog();
+      const mediaInput = new MediaInputComponent();
+      dialog.addChild(mediaInput);
+      dialog.attachTo(dialogRoot);
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(dialogRoot);
+      });
+
+      dialog.setOnSubmitListener(() => {
+        const youtube = new YoutubeComponent(mediaInput.title, mediaInput.url);
+        this.page.addChild(youtube);
+        dialog.removeFrom(dialogRoot);
+      });
+    });
+
+    const newsBtn = document.querySelector('#news')! as HTMLButtonElement;
+    newsBtn.addEventListener('click', () => {
+      const dialog = new InputDialog();
+      const textInput = new TextInputComponent();
+      dialog.addChild(textInput);
+      dialog.attachTo(dialogRoot);
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(dialogRoot);
+      });
+
+      dialog.setOnSubmitListener(() => {
+        const news = new NewsComponent(
+          textInput.title,
+          textInput.url,
+          textInput.summary
+        );
+        this.page.addChild(news);
+        dialog.removeFrom(dialogRoot);
+      });
+    });
+
+    const bookBtn = document.querySelector('#book')! as HTMLButtonElement;
+    bookBtn.addEventListener('click', () => {
+      const dialog = new InputDialog();
+      const textInput = new TextInputComponent();
+      dialog.addChild(textInput);
+      dialog.attachTo(dialogRoot);
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(dialogRoot);
+      });
+
+      dialog.setOnSubmitListener(() => {
+        const book = new BookComponent(
+          textInput.title,
+          textInput.url,
+          textInput.summary
+        );
+        this.page.addChild(book);
+        dialog.removeFrom(dialogRoot);
+      });
     });
   }
 }
 
-new App(document.querySelector('.content__media')! as HTMLElement);
+new App(
+  document.querySelector('.content__media')! as HTMLElement,
+  document.body
+);

@@ -4,7 +4,10 @@ export class YoutubeComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
     super(`<section class="youtube">
             <p class="youtube__title"></p>
-            <iframe class="youtube__video" frameborder="0"></iframe>
+            <div class="youtube__holder">
+              <iframe class="youtube__src" frameborder="0"></iframe>
+            </div>
+            <a class="youtube__link" target="_blank">Go to Source</a>
         </section>`);
 
     const youtubeTitle = this.element.querySelector(
@@ -12,10 +15,15 @@ export class YoutubeComponent extends BaseComponent<HTMLElement> {
     )! as HTMLParagraphElement;
     youtubeTitle.textContent = title;
 
-    const youtubeVideo = this.element.querySelector(
-      '.youtube__video'
+    const youtubeSrc = this.element.querySelector(
+      '.youtube__src'
     )! as HTMLIFrameElement;
-    youtubeVideo.src = this.convertToEmbededURL(url);
+    youtubeSrc.src = this.convertToEmbededURL(url);
+
+    const youtubeLink = this.element.querySelector(
+      '.youtube__link'
+    )! as HTMLAnchorElement;
+    youtubeLink.href = url;
   }
   //  예외 처리 필요
   private convertToEmbededURL(url: string): string {
