@@ -1,13 +1,11 @@
 import { Component } from './components/component.js';
-import { InputDialog } from './components/dialog/dialog.js';
 import {
+  InputDialog,
   MediaData,
-  MediaInputComponent,
-} from './components/dialog/input/media_input.js';
-import {
   TextData,
-  TextInputComponent,
-} from './components/dialog/input/text_input.js';
+} from './components/dialog/dialog.js';
+import { MediaInputComponent } from './components/dialog/input/media_input.js';
+import { TextInputComponent } from './components/dialog/input/text_input.js';
 import { BookComponent } from './components/page/items/book.js';
 import { ImageComponent } from './components/page/items/image.js';
 import { NewsComponent } from './components/page/items/news.js';

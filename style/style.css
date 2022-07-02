@@ -167,3 +167,11 @@ dialog {
   border-radius: 0.5rem;
   box-shadow: 2px 2px 20px var(--shadow-color); */
 }
+
+.news {
+  background-color: lightblue;
+}
+
+.media__form {
+  background-color: lightblue;
+}
