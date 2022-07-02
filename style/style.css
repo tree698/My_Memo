@@ -2,8 +2,6 @@
   --bg-outer-color: #302e27;
   --bg-inner-color: #f2f1d1;
 
-  --bg-accent-color: #2d2d2d;
-
   --button-color: #df5828;
   --button-border-color: #bf572c;
   --button-font-color: #ffcbaf;
@@ -18,6 +16,8 @@
 
   --border-color: #c8c6ab;
   --border-radius: 0.6em;
+
+  --shadow-color: #626459;
 }
 
 body {
@@ -143,35 +143,74 @@ dialog {
 }
 
 .dialog {
+  width: 28em;
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
-  z-index: 1;
-  /* position: fixed;
-  left: 0;
-  top: 0; */
-  /* width: 100%;
-  height: 100%; */
-  /* font-size: 1.2em; */
-  /* background-color: var(--button-color); */
+  background-color: var(--button-color);
+  border: 6px solid var(--button-border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 2px 2px 20px var(--shadow-color);
 }
 
 .dialog__container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0.4em;
-  width: 32em;
-  background-color: var(--bg-accent-color);
-  /* background: var(--component-bg-gradient);
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  box-shadow: 2px 2px 20px var(--shadow-color); */
+  padding: 0.8em;
 }
 
-.news {
-  background-color: lightblue;
+.dialog__close {
+  align-self: flex-end;
+  background-color: transparent;
+  color: var(--bg-inner-color);
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  transition: color 250ms ease;
 }
 
-.media__form {
-  background-color: lightblue;
+.dialog__close:hover {
+  transform: scale(1.02);
+  color: var(--shadow-color);
+}
+
+.dialog__submit {
+  align-self: flex-end;
+  font-size: var(--font-size-small);
+  font-weight: bold;
+  background-color: var(--bg-inner-color);
+  color: var(--font-color);
+  border-radius: var(--border-radius);
+  padding: 0.5em 1.2em;
+  transition: all 250ms ease;
+}
+
+.dialog__submit:hover {
+  transform: scale(1.02);
+  color: var(--button-color);
+}
+
+.form__title,
+.form__summary,
+.form__url {
+  display: flex;
+  flex-direction: column;
+  color: var(--bg-inner-color);
+}
+
+#title,
+#summary,
+#url {
+  height: 2.4em;
+  background-color: var(--bg-inner-color);
+  color: var(--font-color);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-regular);
+  margin-bottom: 0.8em;
+  padding: 0 0.8em;
+  border: 0;
+  outline: none;
+}
+
+#summary {
+  height: 3.4em;
+  padding: 0.8em;
 }

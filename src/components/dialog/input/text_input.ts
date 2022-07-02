@@ -9,13 +9,13 @@ export class TextInputComponent extends BaseComponent<HTMLElement>
                 <label for="title">Title</label>
                 <input type="text" id="title" />
             </div>
-            <div class="form__summary">
-                <label for="summary">Summary</label>
-                <textarea id="summary" rows="3"></textarea>
-            </div>
             <div class="form__url">
                 <label for="url">URL</label>
                 <input type="text" id="url" />
+            </div>
+            <div class="form__summary">
+                <label for="summary">Summary</label>
+                <textarea id="summary" rows="2"></textarea>
             </div>
         </div>`);
   }

@@ -21,7 +21,9 @@ export class InputDialog extends BaseComponent<HTMLElement>
   constructor() {
     super(`<dialog class="dialog">
             <div class="dialog__container">
-                <button class="dialog__close">&times;</button>
+                <button class="dialog__close">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
                 <div class="dialog__body"></div>
                 <button class="dialog__submit">Add</button>
             </div>
