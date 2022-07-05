@@ -4,7 +4,7 @@ export class NewsComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string, summary: string) {
     super(`<section class="news">
                 <p class="news__title"></p>
-                <textarea class="news__summary" rows="3"></textarea>
+                <p class="news__summary" rows="3"></p>
                 <a class="news__link" target="_blank">Go to Source</a>
             </section>`);
 
