@@ -3,9 +3,12 @@ import { BaseComponent } from '../../component.js';
 export class BookComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string, summary: string) {
     super(`<section class="book">
-        <p class="book__title"></p>
-        <textarea class="book__summary" rows="3"></textarea>
-        <a class="book__link" target="_blank">Go to Source</a>
+            <div class="book-container">
+              <div>Book 🐤</div>
+              <p class="book__title"></p>
+              <p class="book__summary"></p>
+              <a class="book__link" target="_blank">Go to Source</a>
+          </div>
     </section>`);
 
     const bookTitle = this.element.querySelector(

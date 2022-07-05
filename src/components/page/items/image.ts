@@ -3,9 +3,15 @@ import { BaseComponent } from '../../component.js';
 export class ImageComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
     super(`<section class="image">
-            <p class="image__title"></p>
-            <div class="image__holder"><img class="image__thumbnail"></div>
-            <a class="image__link" target="_blank">Go to Source</a>
+            <div class="image__holder">
+              <a class="image__link" target="_blank">
+                <img class="image__thumbnail">
+              </a>
+            </div>
+            <div class="image__description">
+              <div>Image 🎉</div>
+              <p class="image__title"></p>
+            </div>
           </section>
     `);
 

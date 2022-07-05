@@ -3,11 +3,13 @@ import { BaseComponent } from '../../component.js';
 export class YoutubeComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
     super(`<section class="youtube">
-            <p class="youtube__title"></p>
             <div class="youtube__holder">
-              <iframe class="youtube__src" frameborder="0" allowfullscreen></iframe>
+              <iframe class="youtube__iframe" frameborder="0" allowfullscreen></iframe>
             </div>
-            <a class="youtube__link" target="_blank">Go to Source</a>
+            <div class="youtube__description">
+              <div>YouTube ❤️</div>
+              <p class="youtube__title"></p>
+            </div>
         </section>`);
 
     const youtubeTitle = this.element.querySelector(
@@ -16,14 +18,9 @@ export class YoutubeComponent extends BaseComponent<HTMLElement> {
     youtubeTitle.textContent = title;
 
     const youtubeSrc = this.element.querySelector(
-      '.youtube__src'
+      '.youtube__iframe'
     )! as HTMLIFrameElement;
     youtubeSrc.src = this.convertToEmbededURL(url);
-
-    const youtubeLink = this.element.querySelector(
-      '.youtube__link'
-    )! as HTMLAnchorElement;
-    youtubeLink.href = url;
   }
   //  예외 처리 필요
   private convertToEmbededURL(url: string): string {

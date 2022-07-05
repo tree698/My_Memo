@@ -21,10 +21,14 @@ export class PageItemComponent extends BaseComponent<HTMLElement>
     super(`<li class="page-item">
             <div class="page-item__body"></div>
             <div class="page-item__controls">
-              <button class="close">&times;</button>
+              <button class="item__close">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
             </div>
           </li>`);
-    const closeBtn = this.element.querySelector('.close')! as HTMLButtonElement;
+    const closeBtn = this.element.querySelector(
+      '.item__close'
+    )! as HTMLButtonElement;
     closeBtn.onclick = () => {
       this.closeListener && this.closeListener();
     };

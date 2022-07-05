@@ -1,14 +1,13 @@
 :root {
   --bg-outer-color: #302e27;
   --bg-inner-color: #f2f1d1;
+  --bg-item-color: rgba(194, 193, 190, 0.3);
 
   --button-color: #df5828;
   --button-border-color: #bf572c;
   --button-font-color: #ffcbaf;
 
-  --font-color: #626459;
-  --font-accent-color: #302e27;
-
+  --color-font: #626459;
   --color-white: #fff;
 
   --font-size-larger: 1.8em;
@@ -18,8 +17,6 @@
 
   --border-color: #c8c6ab;
   --border-radius: 0.6em;
-
-  --shadow-color: #626459;
 }
 
 body {
@@ -57,7 +54,7 @@ button {
 
 .header__title {
   font-size: var(--font-size-larger);
-  color: var(--font-color);
+  color: var(--color-font);
   margin: 0.5em;
 }
 
@@ -76,7 +73,7 @@ button {
 
 .header__button:hover {
   background-color: transparent;
-  color: var(--font-color);
+  color: var(--color-font);
   border: 4px solid var(--border-color);
   transform: scale(1.04);
 }
@@ -90,25 +87,26 @@ button {
 .content__media,
 .content__text {
   flex: 1 1 50%;
+  height: 100%;
   overflow-y: auto;
-  padding: 0 1.2em;
+  padding: 0 2.4em;
   /* Firefox */
-  scrollbar-width: 6px;
-  scrollbar-color: var(--bg-accent-color);
-  scrollbar-face-color: var(--button-color);
+  scrollbar-width: 8px;
+  /* scrollbar-color: var(--bg-accent-color); */
+  scrollbar-face-color: var(--button-border-color);
 }
 
 .content__media::-webkit-scrollbar,
 .content__text::-webkit-scrollbar {
   /* Safari and Chrome */
   background-color: var(--bg-accent-color);
-  width: 6px;
+  width: 8px;
 }
 
 .content__media::-webkit-scrollbar-thumb,
 .content__text::-webkit-scrollbar-thumb {
   /* Safari and Chrome */
-  background-color: var(--button-color);
+  background-color: var(--button-border-color);
 }
 
 .content__media {
@@ -129,7 +127,7 @@ button {
 .copyright {
   margin: 0;
   text-align: center;
-  color: var(--font-color);
+  color: var(--color-font);
   font-size: var(--font-size-regular);
 }
 
@@ -150,7 +148,7 @@ dialog {
   background-color: var(--button-color);
   border: 6px solid var(--button-border-color);
   border-radius: var(--border-radius);
-  box-shadow: 2px 2px 20px var(--shadow-color);
+  box-shadow: 2px 2px 20px var(--color-font);
 }
 
 .dialog__container {
@@ -171,7 +169,7 @@ dialog {
 
 .dialog__close:hover {
   transform: scale(1.02);
-  color: var(--shadow-color);
+  color: var(--color-font);
 }
 
 .dialog__submit {
@@ -179,7 +177,7 @@ dialog {
   font-size: var(--font-size-small);
   font-weight: bold;
   background-color: var(--bg-inner-color);
-  color: var(--font-color);
+  color: var(--color-font);
   border-radius: var(--border-radius);
   padding: 0.5em 1.2em;
   transition: all 250ms ease;
@@ -188,7 +186,7 @@ dialog {
 .dialog__submit:hover {
   transform: scale(1.02);
   color: var(--color-white);
-  background-color: var(--shadow-color);
+  background-color: var(--color-font);
 }
 
 .form__title,
@@ -204,7 +202,7 @@ dialog {
 #url {
   height: 2.4em;
   background-color: var(--bg-inner-color);
-  color: var(--font-color);
+  color: var(--color-font);
   border-radius: var(--border-radius);
   font-size: var(--font-size-regular);
   margin-bottom: 0.8em;
@@ -216,4 +214,104 @@ dialog {
 #summary {
   height: 3.4em;
   padding: 0.8em;
+}
+
+/* page */
+.page {
+  list-style: none;
+  padding: 0;
+}
+
+.page-item {
+  /* width: 100%; */
+  margin-bottom: 0.6em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 2px 2px 6px var(--color-font);
+  background: var(--bg-item-color);
+  border-radius: var(--border-radius);
+}
+
+.page-item__body {
+  width: 100%;
+}
+
+.page-item__controls {
+  margin-right: 0.5em;
+}
+
+.item__close {
+  background-color: transparent;
+  color: var(--color-font);
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  transition: color 250ms ease;
+}
+
+.item__close:hover {
+  transform: scale(1.02);
+  color: var(--button-color);
+}
+
+/* youtube, image */
+.youtube,
+.image {
+  display: flex;
+  width: 100%;
+  height: 14rem;
+}
+
+.youtube__holder,
+.image__holder {
+  flex: 1 1 60%;
+}
+
+.youtube__iframe,
+.image__thumbnail {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.6em 0 0 0.6em;
+}
+
+.youtube__description,
+.image__description {
+  flex: 1 1 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.5em;
+  color: var(--color-font);
+}
+
+.youtube__title,
+.image__title {
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+}
+
+/* news, book */
+.news,
+.book {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--color-font);
+}
+
+.news-container,
+.book-container {
+  padding: 1em;
+}
+
+.news__title,
+.book__title {
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+}
+
+.news__link,
+.book__link {
+  color: var(--color-font);
 }
