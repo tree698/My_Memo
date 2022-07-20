@@ -18,7 +18,7 @@ export class PageItemComponent extends BaseComponent<HTMLElement>
   implements ItemContainer {
   private closeListener?: OnCloseListener;
   constructor() {
-    super(`<li class="page-item">
+    super(`<li draggable="true" class="page-item">
             <div class="page-item__body"></div>
             <div class="page-item__controls">
               <button class="item__close">
@@ -32,6 +32,13 @@ export class PageItemComponent extends BaseComponent<HTMLElement>
     closeBtn.onclick = () => {
       this.closeListener && this.closeListener();
     };
+
+    this.element.addEventListener('dragstart', (event: DragEvent) => {
+      this.onDragStart(event);
+    });
+    this.element.addEventListener('dragend', (event: DragEvent) => {
+      this.onDragEnd(event);
+    });
   }
 
   addChild(item: Component) {
@@ -44,11 +51,26 @@ export class PageItemComponent extends BaseComponent<HTMLElement>
   setOnCloseListener(listener: OnCloseListener) {
     this.closeListener = listener;
   }
+
+  onDragStart(event: DragEvent) {
+    console.log('dragstart', event);
+  }
+
+  onDragEnd(event: DragEvent) {
+    console.log('dragend', event);
+  }
 }
 
 export class PageComponent extends BaseComponent<HTMLElement> {
   constructor(private pageItemConstructure: ItemContainerConstructure) {
     super(`<ul class="page"></ul>`);
+
+    this.element.addEventListener('dragover', (event: DragEvent) => {
+      this.onDragOver(event);
+    });
+    this.element.addEventListener('drop', (event: DragEvent) => {
+      this.onDrop(event);
+    });
   }
 
   addChild(item: Component) {
@@ -61,5 +83,14 @@ export class PageComponent extends BaseComponent<HTMLElement> {
     pageItem.setOnCloseListener(() => {
       pageItem.removeFrom(this.element);
     });
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    console.log('dragover', event);
+  }
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    console.log('dorp', event);
   }
 }
