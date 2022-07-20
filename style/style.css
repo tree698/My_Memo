@@ -315,3 +315,8 @@ dialog {
 .book__link {
   color: var(--color-font);
 }
+
+/* drag and drop */
+.mute-children * {
+  pointer-events: none;
+}

@@ -14,6 +14,7 @@ type OnDragStateListener<T extends Component> = (
 export interface ItemContainer extends Component, Composable {
   setOnCloseListener(listener: OnCloseListener): void;
   setOnDragStateListener(listener: OnDragStateListener<ItemContainer>): void;
+  muteChildren(state: 'mute' | 'unmute'): void;
 }
 
 type ItemContainerConstructure = {
@@ -88,9 +89,22 @@ export class PageItemComponent extends BaseComponent<HTMLElement>
   setOnCloseListener(listener: OnCloseListener) {
     this.closeListener = listener;
   }
+
+  muteChildren(state: 'mute' | 'unmute'): void {
+    if (state === 'mute') {
+      this.element.classList.add('mute-children');
+    } else {
+      this.element.classList.remove('mute-children');
+    }
+  }
 }
 
-export class PageComponent extends BaseComponent<HTMLElement> {
+export class PageComponent extends BaseComponent<HTMLElement>
+  implements Composable {
+  private children = new Set<ItemContainer>();
+  private dragTarget?: ItemContainer;
+  private dropTarget?: ItemContainer;
+
   constructor(private pageItemConstructure: ItemContainerConstructure) {
     super(`<ul class="page"></ul>`);
 
@@ -111,21 +125,52 @@ export class PageComponent extends BaseComponent<HTMLElement> {
 
     pageItem.setOnCloseListener(() => {
       pageItem.removeFrom(this.element);
+      this.children.delete(pageItem);
     });
+
+    this.children.add(pageItem);
 
     pageItem.setOnDragStateListener(
       (target: ItemContainer, state: DragState) => {
-        console.log(target, state);
+        switch (state) {
+          case 'start':
+            this.dragTarget = target;
+            this.updateItems('mute');
+            break;
+          case 'stop':
+            this.dragTarget = undefined;
+            this.updateItems('unmute');
+            break;
+          case 'enter':
+            this.dropTarget = target;
+            break;
+          case 'leave':
+            this.dropTarget = undefined;
+            break;
+          default:
+            throw new Error(`unsupported state: ${state}`);
+        }
       }
     );
   }
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
-    console.log('dragover', event);
   }
   onDrop(event: DragEvent) {
     event.preventDefault();
-    console.log('dorp', event);
+    if (!this.dropTarget) {
+      return;
+    }
+    if (this.dragTarget && this.dragTarget !== this.dropTarget) {
+      this.dragTarget.removeFrom(this.element);
+      this.dropTarget.attach(this.dragTarget, 'beforebegin');
+    }
+  }
+
+  private updateItems(state: 'mute' | 'unmute') {
+    this.children.forEach((item: ItemContainer) => {
+      item.muteChildren(state);
+    });
   }
 }
