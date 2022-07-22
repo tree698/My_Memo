@@ -16,6 +16,7 @@ export interface ItemContainer extends Component, Composable {
   setOnDragStateListener(listener: OnDragStateListener<ItemContainer>): void;
   muteChildren(state: 'mute' | 'unmute'): void;
   getBoundingRect(): DOMRect;
+  onDropped(): void;
 }
 
 type ItemContainerConstructure = {
@@ -65,18 +66,26 @@ export class PageItemComponent extends BaseComponent<HTMLElement>
 
   onDragStart(_: DragEvent) {
     this.notifyDragObserver('start');
+    this.element.classList.add('item-lift');
   }
 
   onDragEnd(_: DragEvent) {
     this.notifyDragObserver('stop');
+    this.element.classList.remove('item-lift');
   }
 
   onDragEnter(_: DragEvent) {
     this.notifyDragObserver('enter');
+    this.element.classList.add('drag-area');
   }
 
   onDragLeave(_: DragEvent) {
     this.notifyDragObserver('leave');
+    this.element.classList.remove('drag-area');
+  }
+
+  onDropped() {
+    this.element.classList.remove('drag-area');
   }
 
   notifyDragObserver(state: DragState) {
@@ -176,6 +185,7 @@ export class PageComponent extends BaseComponent<HTMLElement>
         dropY > srcElement.y ? 'afterend' : 'beforebegin'
       );
     }
+    this.dropTarget.onDropped();
   }
 
   private updateItems(state: 'mute' | 'unmute') {
