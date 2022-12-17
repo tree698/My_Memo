@@ -69,44 +69,44 @@ class App {
     );
 
     // For demo :)
-    this.pageForMedia.addChild(
-      new ImageComponent('Image Title', 'https://picsum.photos/800/400')
-    );
-    this.pageForMedia.addChild(
-      new YoutubeComponent(
-        'Video Title',
-        'https://www.youtube.com/embed/-WNimB7KMjA'
-      )
-    );
-    this.pageForText.addChild(
-      new NewsComponent(
-        'Note Title',
-        'https://naver.com',
-        "Don't forget to code your dream"
-      )
-    );
-    this.pageForText.addChild(
-      new BookComponent('Todo Title', 'https://naver.com', 'TypeScript Course!')
-    );
-    this.pageForMedia.addChild(
-      new ImageComponent('Image Title', 'https://picsum.photos/800/400')
-    );
-    this.pageForMedia.addChild(
-      new YoutubeComponent(
-        'Video Title',
-        'https://www.youtube.com/embed/-WNimB7KMjA'
-      )
-    );
-    this.pageForText.addChild(
-      new NewsComponent(
-        'Note Title',
-        'https://naver.com',
-        "Don't forget to code your dream"
-      )
-    );
-    this.pageForText.addChild(
-      new BookComponent('Todo Title', 'https://naver.com', 'TypeScript Course!')
-    );
+    // this.pageForMedia.addChild(
+    //   new ImageComponent('Image Title', 'https://picsum.photos/800/400')
+    // );
+    // this.pageForMedia.addChild(
+    //   new YoutubeComponent(
+    //     'Video Title',
+    //     'https://www.youtube.com/embed/-WNimB7KMjA'
+    //   )
+    // );
+    // this.pageForText.addChild(
+    //   new NewsComponent(
+    //     'Note Title',
+    //     'https://naver.com',
+    //     "Don't forget to code your dream"
+    //   )
+    // );
+    // this.pageForText.addChild(
+    //   new BookComponent('Todo Title', 'https://naver.com', 'TypeScript Course!')
+    // );
+    // this.pageForMedia.addChild(
+    //   new ImageComponent('Image Title', 'https://picsum.photos/800/400')
+    // );
+    // this.pageForMedia.addChild(
+    //   new YoutubeComponent(
+    //     'Video Title',
+    //     'https://www.youtube.com/embed/-WNimB7KMjA'
+    //   )
+    // );
+    // this.pageForText.addChild(
+    //   new NewsComponent(
+    //     'Note Title',
+    //     'https://naver.com',
+    //     "Don't forget to code your dream"
+    //   )
+    // );
+    // this.pageForText.addChild(
+    //   new BookComponent('Todo Title', 'https://naver.com', 'TypeScript Course!')
+    // );
   }
 
   private bindElementToDialog<T extends (MediaData | TextData) & Component>(
