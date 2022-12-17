@@ -4,7 +4,7 @@
 - 인터넷 서핑 중 간직하고 싶은 동영상, 이미지, 뉴스, 책 등의 url과 간력한 요약을 기록하는 나만의 메모장
 ## :+1: 스택
 ![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![JavaScript](https://img.shields.io/badge/-JavaScript-%23F7DF1C?style=for-the-badge&logo=javascript&logoColor=000000&labelColor=%23F7DF1C&color=%23FFCE5A)
+![JavaScript](https://img.shields.io/badge/-JavaScript-%23F7DF1C?style=for-the-badge&logo=javascript&logoColor=000000&labelColor=%23F7DF1C&color=%23F7DF1C)
 ![HTML](https://img.shields.io/badge/-HTML5-F05032?style=for-the-badge&logo=html5&logoColor=ffffff)
 ![CSS](https://img.shields.io/badge/-CSS-007ACC?style=for-the-badge&logo=css3)
 
